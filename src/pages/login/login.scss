@@ -1,0 +1,23 @@
+page-login {
+
+  .background-img{
+    background-image: url('../../assets/imgs/login-background.png');
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    filter: grayscale(20%) blur(1px) brightness(0.4);;
+  }
+
+  .item-input-login {
+    background-color: transparent;
+  }
+
+  .item-has-focus, .item-input-has-focus {
+    color: white;
+  }
+}
