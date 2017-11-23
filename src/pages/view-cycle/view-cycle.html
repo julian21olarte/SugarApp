@@ -1,0 +1,60 @@
+<!--
+  Generated template for the ViewCyclePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{cycle.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-fab bottom right #fab>
+    <button ion-fab color="primary">
+      <ion-icon name="more"></ion-icon>
+    </button>
+    <ion-fab-list side="left">
+      <button ion-fab color="danger" (click)="deleteCycle()"><ion-icon name="trash"></ion-icon></button>
+      <button ion-fab color="green" (click)="editCycle()"><ion-icon name="create"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <ion-card>
+    <ion-card-header color="primary">
+      Fases del ciclo de produccion
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list >
+        <ion-item *ngFor="let phase of phases">
+          <ion-icon name="leaf"></ion-icon>
+          {{phase.name}}
+          <button ion-button item-end outline (click)="showPhase(phase)">Ver</button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card padding>
+    <ion-card-content>
+        <button ion-button full outline color="green" (click)="addActivity()">Agregar Actividad</button>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Actividades
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let activity of activities | async">
+          <label>{{activity.name}}</label>
+          <p>{{activity.reminder}}</p>
+          <button ion-button item-end outline color="primary" (click)="showActivity(activity)">Ver</button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

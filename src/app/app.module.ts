@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+//import { CalendarModule } from 'ionic3-calendar';
 import { MyApp } from './app.component';
 
 
@@ -17,6 +18,8 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { CyclesPage } from '../pages/cycles/cycles';
 import { AddCyclePage } from '../pages/add-cycle/add-cycle';
+import { EditCyclePage } from '../pages/edit-cycle/edit-cycle';
+import { ViewCyclePage } from '../pages/view-cycle/view-cycle';
 
 //angular-firebase modules
 import { AngularFireModule } from 'angularfire2';
@@ -25,6 +28,9 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from '../services/auth.service';
 import { DatabaseService } from '../services/database.service';
 import { firebaseConfig } from './firebase';
+import { PhasePage } from '../pages/phase/phase';
+import { AddActivityPage } from '../pages/add-activity/add-activity';
+import { ViewActivityPage } from '../pages/view-activity/view-activity';
 
 @NgModule({
   declarations: [
@@ -37,14 +43,19 @@ import { firebaseConfig } from './firebase';
     RegisterPage,
     SidebarPage,
     CyclesPage,
-    AddCyclePage
+    AddCyclePage,
+    EditCyclePage,
+    ViewCyclePage,
+    PhasePage,
+    AddActivityPage,
+    ViewActivityPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -57,7 +68,12 @@ import { firebaseConfig } from './firebase';
     RegisterPage,
     SidebarPage,
     CyclesPage,
-    AddCyclePage
+    AddCyclePage,
+    EditCyclePage,
+    ViewCyclePage,
+    PhasePage,
+    AddActivityPage,
+    ViewActivityPage
   ],
   providers: [
     StatusBar,

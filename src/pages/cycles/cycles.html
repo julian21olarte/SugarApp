@@ -20,19 +20,12 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item>
+    <button ion-item *ngFor="let cycle of (cycles | async)" (click)="viewCycle(cycle)">
       <ion-avatar item-start>
         <img src="../../assets/imgs/logo.png">
       </ion-avatar>
-      <h3>Primer ciclo</h3>
-      <p>I've had a pretty messed up day. If we just...</p>
-    </button>
-    <button ion-item>
-      <ion-avatar item-start>
-        <img src="../../assets/imgs/logo.png">
-      </ion-avatar>
-      <h3>Segundo ciclo</h3>
-      <p>I've had a pretty messed up day. If we just...</p>
+      <h3>{{cycle.name}}</h3>
+      <p>{{cycle.start_date}}</p>
     </button>
   </ion-list>
   <ion-fab bottom right #fab>
@@ -42,7 +35,7 @@
     <ion-fab-list side="top">
       <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
       <button ion-fab><ion-icon name="list-box"></ion-icon></button>
-      <button ion-fab (click)="addCyclePage()"><ion-icon name="add"></ion-icon></button>
+      <button ion-fab color="primary" (click)="addCyclePage(fab)"><ion-icon name="add"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 </ion-content>
