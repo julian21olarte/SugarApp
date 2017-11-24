@@ -19,8 +19,10 @@
       {{activity.name}}
     </ion-card-header>
     <ion-card-content>
+      <h5>Recordatorio: {{activity.reminder | amTimeAgo}}</h5>
+      <br>
+      <p>Descripcion:</p>
       <p>{{activity.description}}</p>
-      <p>Recordatorio: {{activity.reminder | amTimeAgo}}</p>
     </ion-card-content>
   </ion-card>
 
