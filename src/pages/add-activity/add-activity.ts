@@ -47,7 +47,7 @@ export class AddActivityPage {
     let data = {
       name: this.name,
       description: this.description,
-      reminder: this.reminder,
+      reminder: new Date().getTime(),
       phase: this.phase
     };
     this.database.insert('cycles/'+this.cycle.id+'/activities', data)

@@ -10,6 +10,8 @@ import { ViewActivityPage } from '../view-activity/view-activity';
 import { AsyncPipe } from '@angular/common/src/pipes/async_pipe';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
+import * as _ from 'lodash';
+
 /**
  * Generated class for the ViewCyclePage page.
  *
@@ -23,8 +25,9 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 })
 export class ViewCyclePage implements OnInit{
   public cycle: any;
-  public activities:any;
+  public activities:Array<any>;
   public phases: any;
+  public nextAct: any;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
@@ -35,7 +38,14 @@ export class ViewCyclePage implements OnInit{
 
   ngOnInit() {
     this.cycle = this.navParams.get('cycle');
-    this.activities = this.databaseService.get('cycles/'+this.cycle.id+'/activities');
+
+    this.databaseService.get('cycles/'+this.cycle.id+'/activities')
+    .subscribe(acts => {
+      this.activities = acts;
+      this.nextAct = this.nextActivity();
+      console.log(this.nextAct);
+    });
+
     this.databaseService.getPhases()
     .subscribe(phases => {
       this.phases = phases;
@@ -91,6 +101,14 @@ export class ViewCyclePage implements OnInit{
 
   public showActivity(activity:any) {
     this.navCtrl.push(ViewActivityPage, {activity});
+  }
+
+
+  private nextActivity() {
+    return _.find(_.sortBy(this.activities, 'reminder'), function( act ) {
+      let current = new Date().getTime();
+      return act.reminder < current;
+    });
   }
 
 }

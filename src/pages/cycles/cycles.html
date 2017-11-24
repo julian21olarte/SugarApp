@@ -19,7 +19,7 @@
 
 
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="((cycles | async)?.length)">
     <button ion-item *ngFor="let cycle of (cycles | async)" (click)="viewCycle(cycle)">
       <ion-avatar item-start>
         <img src="../../assets/imgs/logo.png">
@@ -28,6 +28,13 @@
       <p>{{cycle.start_date}}</p>
     </button>
   </ion-list>
+  <ion-card *ngIf="!((cycles | async)?.length)">
+    <ion-card-content>
+      <ion-card-title color="danger">
+        Aun no tienes ningun ciclo de produccion
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
   <ion-fab bottom right #fab>
     <button ion-fab color="danger">
       <ion-icon name="more"></ion-icon>

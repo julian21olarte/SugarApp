@@ -34,7 +34,7 @@ export class EditCyclePage {
     fab.close();
     this.cycle.end_date = 
     new Date( moment(this.cycle.start_date, "DD/MM/YYYY h:mm:ss")
-    .add((this.cycle.duration/12), 'y').format()).toLocaleString();
+    .add((this.cycle.duration/12), 'y').format()).getTime();
 
     this.database.update('cycles/'+this.cycle.id, this.cycle)
     .then(response => {

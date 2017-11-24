@@ -50,8 +50,8 @@ export class AddCyclePage implements OnInit{
     this.db.insert( 'cycles', {
       userId: this.currentUser.uid,
       name: this.name,
-      start_date: start_date.toLocaleString(),
-      end_date: end_date.toLocaleString(),
+      start_date: start_date.getTime(),
+      end_date: end_date.getTime(),
       duration: this.duration,
       activities: []
     })

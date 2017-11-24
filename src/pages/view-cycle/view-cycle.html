@@ -15,46 +15,51 @@
 
 <ion-content>
   <ion-fab bottom right #fab>
-    <button ion-fab color="primary">
+    <button ion-fab color="fabBlue">
       <ion-icon name="more"></ion-icon>
     </button>
-    <ion-fab-list side="left">
+    <ion-fab-list side="top">
       <button ion-fab color="danger" (click)="deleteCycle()"><ion-icon name="trash"></ion-icon></button>
-      <button ion-fab color="green" (click)="editCycle()"><ion-icon name="create"></ion-icon></button>
+      <button ion-fab color="secondary" (click)="editCycle()"><ion-icon name="create"></ion-icon></button>
+      <button ion-fab color="primary" (click)="addActivity()"><ion-icon name="alarm"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 
   <ion-card>
     <ion-card-header color="primary">
-      Fases del ciclo de produccion
+      Timeline
     </ion-card-header>
     <ion-card-content>
-      <ion-list >
-        <ion-item *ngFor="let phase of phases">
-          <ion-icon name="leaf"></ion-icon>
-          {{phase.name}}
-          <button ion-button item-end outline (click)="showPhase(phase)">Ver</button>
-        </ion-item>
-      </ion-list>
+      <ion-card>
+        <img src="../assets/imgs/farm.png"/>
+        <ion-card-content>
+          <ion-card-title color="primary">
+            Recorrido
+          </ion-card-title>
+          <p>
+            
+          </p>
+        </ion-card-content>
+      </ion-card>
     </ion-card-content>
   </ion-card>
-  <ion-card padding>
+  <ion-card *ngIf="nextAct?.name">
+    <ion-card-header color="primary">
+
+        <label>Proxima Actividad</label>
+    </ion-card-header>
     <ion-card-content>
-        <button ion-button full outline color="green" (click)="addActivity()">Agregar Actividad</button>
+        <ion-list inset >
+          <ion-item >
+            <p>{{nextAct.name}}</p>
+            <p>{{nextAct.reminder}}</p>
+          </ion-item>
+        </ion-list>
     </ion-card-content>
   </ion-card>
   <ion-card>
-    <ion-card-header>
-      Actividades
-    </ion-card-header>
     <ion-card-content>
-      <ion-list>
-        <ion-item *ngFor="let activity of activities | async">
-          <label>{{activity.name}}</label>
-          <p>{{activity.reminder}}</p>
-          <button ion-button item-end outline color="primary" (click)="showActivity(activity)">Ver</button>
-        </ion-item>
-      </ion-list>
+      <button ion-button outline full color="primary">Todas las actividades</button>
     </ion-card-content>
   </ion-card>
 </ion-content>
