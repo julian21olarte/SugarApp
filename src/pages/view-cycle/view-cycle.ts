@@ -1,4 +1,3 @@
-import { MomentModule } from 'angular2-moment';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
@@ -8,7 +7,6 @@ import { EditCyclePage } from '../edit-cycle/edit-cycle';
 import { PhasePage } from '../phase/phase';
 import { AddActivityPage } from '../add-activity/add-activity';
 import { ViewActivityPage } from '../view-activity/view-activity';
-import { AsyncPipe } from '@angular/common/src/pipes/async_pipe';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import * as _ from 'lodash';
 
@@ -100,7 +98,7 @@ export class ViewCyclePage implements OnInit{
 
 
   public showActivity(activity:any) {
-    this.navCtrl.push(ViewActivityPage, {activity});
+    this.navCtrl.push(ViewActivityPage, {activity:activity, cycle_id: this.cycle.id});
   }
 
 

@@ -1,3 +1,4 @@
+import { EditActivityPage } from './../pages/edit-activity/edit-activity';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -49,7 +50,8 @@ import { ViewActivityPage } from '../pages/view-activity/view-activity';
     ViewCyclePage,
     PhasePage,
     AddActivityPage,
-    ViewActivityPage
+    ViewActivityPage,
+    EditActivityPage
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,8 @@ import { ViewActivityPage } from '../pages/view-activity/view-activity';
     ViewCyclePage,
     PhasePage,
     AddActivityPage,
-    ViewActivityPage
+    ViewActivityPage,
+    EditActivityPage
   ],
   providers: [
     StatusBar,

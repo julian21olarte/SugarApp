@@ -30,10 +30,10 @@
       <h3 color="primary">{{cycle.name}}</h3>
       <!--<p>Duracion: {{(cycle.duration/12)}} año(s)</p>-->
       <p>Duracion: {{(cycle.duration/12) | amDuration:'years' }}</p>
-      <p>Creada {{(cycle.start_date | amTimeAgo)}}</p>
+      <p>Creado {{(cycle.start_date | amTimeAgo)}}</p>
     </button>
   </ion-list>
-  <ion-spinner padding name="circles" *ngIf="!((cycles | async)?.length)"></ion-spinner>
+  <ion-spinner padding name="dots" *ngIf="!((cycles | async)?.length)"></ion-spinner>
   <ion-fab bottom right #fab>
     <button ion-fab color="danger">
       <ion-icon name="more"></ion-icon>

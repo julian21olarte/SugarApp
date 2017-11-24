@@ -27,12 +27,12 @@
   </ion-card>
 
   <ion-fab bottom right #fab>
-    <button ion-fab color="danger">
+    <button ion-fab color="fabBlue">
       <ion-icon name="more"></ion-icon>
     </button>
     <ion-fab-list side="top">
-      <button ion-fab color="primary"><ion-icon name="create"></ion-icon></button>
-      <button ion-fab color="danger"><ion-icon name="trash"></ion-icon></button>
+      <button ion-fab color="danger"><ion-icon name="trash" (click) ="deleteActivity(activity.id)"></ion-icon></button>
+      <button ion-fab color="primary"><ion-icon name="create" (click) ="showEditActivity(fab, activity)"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 </ion-content>
