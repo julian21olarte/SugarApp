@@ -34,27 +34,24 @@
         <img src="../assets/imgs/farm.png"/>
         <ion-card-content>
           <ion-card-title color="primary">
-            Recorrido
+            <button ion-button clear full color="danger">Progreso</button>
           </ion-card-title>
-          <p>
-            
-          </p>
         </ion-card-content>
       </ion-card>
     </ion-card-content>
   </ion-card>
   <ion-card *ngIf="nextAct?.name">
     <ion-card-header color="primary">
-
         <label>Proxima Actividad</label>
+        <ion-icon item-end name="alarm" color="purple"></ion-icon>
     </ion-card-header>
     <ion-card-content>
-        <ion-list inset >
-          <ion-item >
-            <p>{{nextAct.name}}</p>
-            <p>{{nextAct.reminder}}</p>
-          </ion-item>
-        </ion-list>
+      <ion-item >
+          <h3>{{nextAct.name}}</h3>
+          <p>Recordatorio: {{nextAct.reminder | amTimeAgo}}
+          </p>
+          <button ion-button outline full color="primary" (click) ="showActivity(nextAct)">Ver</button>
+        </ion-item>
     </ion-card-content>
   </ion-card>
   <ion-card>

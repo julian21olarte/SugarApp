@@ -20,21 +20,20 @@
 
 <ion-content>
   <ion-list *ngIf="((cycles | async)?.length)">
+    <ion-list-header>
+      Mis ciclos
+    </ion-list-header>
     <button ion-item *ngFor="let cycle of (cycles | async)" (click)="viewCycle(cycle)">
       <ion-avatar item-start>
         <img src="../../assets/imgs/logo.png">
       </ion-avatar>
-      <h3>{{cycle.name}}</h3>
-      <p>{{cycle.start_date}}</p>
+      <h3 color="primary">{{cycle.name}}</h3>
+      <!--<p>Duracion: {{(cycle.duration/12)}} año(s)</p>-->
+      <p>Duracion: {{(cycle.duration/12) | amDuration:'years' }}</p>
+      <p>Creada {{(cycle.start_date | amTimeAgo)}}</p>
     </button>
   </ion-list>
-  <ion-card *ngIf="!((cycles | async)?.length)">
-    <ion-card-content>
-      <ion-card-title color="danger">
-        Aun no tienes ningun ciclo de produccion
-      </ion-card-title>
-    </ion-card-content>
-  </ion-card>
+  <ion-spinner padding name="circles" *ngIf="!((cycles | async)?.length)"></ion-spinner>
   <ion-fab bottom right #fab>
     <button ion-fab color="danger">
       <ion-icon name="more"></ion-icon>

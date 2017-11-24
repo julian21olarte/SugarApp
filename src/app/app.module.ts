@@ -1,6 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { MomentModule } from 'angular2-moment';
 //import { CalendarModule } from 'ionic3-calendar';
 import { MyApp } from './app.component';
 
@@ -55,7 +56,8 @@ import { ViewActivityPage } from '../pages/view-activity/view-activity';
     IonicModule.forRoot(MyApp),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    MomentModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

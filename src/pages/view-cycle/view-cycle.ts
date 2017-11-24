@@ -1,3 +1,4 @@
+import { MomentModule } from 'angular2-moment';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
@@ -9,7 +10,6 @@ import { AddActivityPage } from '../add-activity/add-activity';
 import { ViewActivityPage } from '../view-activity/view-activity';
 import { AsyncPipe } from '@angular/common/src/pipes/async_pipe';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-
 import * as _ from 'lodash';
 
 /**
@@ -105,9 +105,9 @@ export class ViewCyclePage implements OnInit{
 
 
   private nextActivity() {
-    return _.find(_.sortBy(this.activities, 'reminder'), function( act ) {
+    return _.find(_.sortBy(this.activities, 'reminder', 'asc'), function( act ) {
       let current = new Date().getTime();
-      return act.reminder < current;
+      return act.reminder > current;
     });
   }
 
