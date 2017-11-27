@@ -6,13 +6,64 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="green">
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle color="light">
+        <ion-icon name="menu" ></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Editar Actividad</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
-
-
+    <ion-item>
+      <ion-label floating >
+        <ion-icon name="person"></ion-icon>
+        Nombre
+      </ion-label>
+      <ion-input [(ngModel)]="activity.name" name="name"></ion-input>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label color="green" floating >
+        <ion-icon name="alert"></ion-icon>
+        Descripcion
+      </ion-label>
+      <ion-textarea [(ngModel)]="activity.description" name="description"></ion-textarea>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label color="green">
+        <ion-icon name="time"></ion-icon> 
+        Recordatorio
+      </ion-label>
+      <ion-datetime 
+        displayFormat="D MMM YYYY HH:mm A"
+        [(ngModel)]="activity.reminder" 
+        name="reminder" 
+        cancelText="Cancelar" 
+        doneText="Ok"
+        min="{{minDate}}"
+        monthShortNames="{{monthShortNames}}"
+      ></ion-datetime>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label color="green">
+        <ion-icon name="time"></ion-icon> 
+        Fase
+      </ion-label>
+      <ion-select [(ngModel)]="activity.phase" name="phase" >
+        <ion-option value="1">Germinacion y establecimiento</ion-option>
+        <ion-option value="2">Ahijamiento</ion-option>
+        <ion-option value="3">Gran crecimiento</ion-option>
+        <ion-option value="4">Maduracion</ion-option>
+      </ion-select>
+    </ion-item>
+    <br>
+    <button ion-button full color="secondary" (click)="editActivity()">Guardar</button>
+    <br>
+    <button ion-button full color="danger" (click)="cancel()">Cancelar</button>
 </ion-content>

@@ -1,10 +1,12 @@
-import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { DatabaseService } from './../../services/database.service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { EditActivityPage } from '../edit-activity/edit-activity';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
+import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { FabContainer } from 'ionic-angular/components/fab/fab-container';
+import { Observable } from 'rxjs/Observable';
+import { AddObservationPage } from '../add-observation/add-observation';
 
 /**
  * Generated class for the ViewActivityPage page.
@@ -21,6 +23,7 @@ export class ViewActivityPage {
 
   public activity:any;
   public cycle_id:string;
+  public observations: Observable<any>;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public databaseService: DatabaseService,
@@ -28,12 +31,23 @@ export class ViewActivityPage {
     public toastCtrl: ToastController) {
     this.activity = this.navParams.get('activity');
     this.cycle_id = this.navParams.get('cycle_id');
+    this.observations = this.databaseService.getBy('observations',{
+      orderByChild: 'activityId',
+      equalTo: this.activity.id
+    });
   }
 
 
-  public showEditActivity(fabC: FabContainer, activity: any) {
+  public showEditActivity(fabC: FabContainer) {
     fabC.close();
-    this.navCtrl.push(EditActivityPage, {activity: activity, cycle_id: this.cycle_id});
+    let newActivity = {
+      id: this.activity.id,
+      name: this.activity.name,
+      description: this.activity.description, 
+      reminder: this.activity.reminder, 
+      phase: this.activity.phase
+    }
+    this.navCtrl.push(EditActivityPage, {activity: newActivity, cycle: this.cycle_id});
   }
 
 
@@ -67,5 +81,17 @@ export class ViewActivityPage {
         }
       ]
     }).present();
+  }
+
+
+  public showAddObservation(fab: FabContainer) {
+    fab.close();
+    this.navCtrl.push(AddObservationPage, {activity: this.activity.id});
+  }
+
+
+  public showObservation(observation:any) {
+
+
   }
 }

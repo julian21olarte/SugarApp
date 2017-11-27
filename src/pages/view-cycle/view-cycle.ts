@@ -9,6 +9,8 @@ import { AddActivityPage } from '../add-activity/add-activity';
 import { ViewActivityPage } from '../view-activity/view-activity';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import * as _ from 'lodash';
+import { ActivitiesPage } from '../activities/activities';
+import { FabContainer } from 'ionic-angular/components/fab/fab-container';
 
 /**
  * Generated class for the ViewCyclePage page.
@@ -50,12 +52,24 @@ export class ViewCyclePage implements OnInit{
     });
   }
 
-  public editCycle() {
-    this.navCtrl.push(EditCyclePage, {cycle: this.cycle});
+  public editCycle(fab: FabContainer) {
+    fab.close();
+    let newCycle = {
+      id: this.cycle.id,
+      name: this.cycle.name,
+      start_date: this.cycle.start_date,
+      end_date: this.cycle.end_date,
+      duration:this.cycle.duration,
+      userId: this.cycle.userId,
+      activities: this.cycle.activities
+    }
+
+    this.navCtrl.push(EditCyclePage, {cycle: newCycle});
   }
 
 
-  public deleteCycle() {
+  public deleteCycle(fab: FabContainer) {
+    fab.close();
     let confirm = this.alertCtrl.create({
       title: 'Eliminar este cyclo de produccion?',
       message: 'Estas seguro? perderas toda la informacion de este ciclo.',
@@ -92,8 +106,9 @@ export class ViewCyclePage implements OnInit{
     this.navCtrl.push(PhasePage, {phase});
   }
 
-  public addActivity() {
-    this.navCtrl.push(AddActivityPage, {cycle: this.cycle});
+  public addActivity(fab: FabContainer) {
+    fab.close();
+    this.navCtrl.push(AddActivityPage, {cycle_id: this.cycle.id});
   }
 
 
@@ -107,6 +122,11 @@ export class ViewCyclePage implements OnInit{
       let current = new Date().getTime();
       return act.reminder > current;
     });
+  }
+
+
+  public showAllActivities() {
+    this.navCtrl.push(ActivitiesPage, {cycle_id: this.cycle.id});
   }
 
 }

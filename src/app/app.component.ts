@@ -10,8 +10,8 @@ import { AddActivityPage } from '../pages/add-activity/add-activity';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  //rootPage:any = LoginPage;
-  rootPage:any = SidebarPage;
+  rootPage:any = LoginPage;
+  //rootPage:any = SidebarPage;
   //rootPage:any = AddActivityPage;
 
 

@@ -5,4 +5,7 @@ page-view-cycle {
     max-height: 30vh;
   }
 
+  ion-item.nextActivity-color {
+    color: color($colors, primary);
+  }
 }

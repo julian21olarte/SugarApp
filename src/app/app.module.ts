@@ -13,15 +13,21 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { SidebarPage } from '../pages/sidebar/sidebar';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { Camera } from '@ionic-native/camera';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { CyclesPage } from '../pages/cycles/cycles';
 import { AddCyclePage } from '../pages/add-cycle/add-cycle';
 import { EditCyclePage } from '../pages/edit-cycle/edit-cycle';
 import { ViewCyclePage } from '../pages/view-cycle/view-cycle';
+import { PhasePage } from '../pages/phase/phase';
+import { AddActivityPage } from '../pages/add-activity/add-activity';
+import { ViewActivityPage } from '../pages/view-activity/view-activity';
+import { ActivitiesPage } from '../pages/activities/activities';
+import { ObservationsPage } from '../pages/observations/observations';
 
 //angular-firebase modules
 import { AngularFireModule } from 'angularfire2';
@@ -30,9 +36,12 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthService } from '../services/auth.service';
 import { DatabaseService } from '../services/database.service';
 import { firebaseConfig } from './firebase';
-import { PhasePage } from '../pages/phase/phase';
-import { AddActivityPage } from '../pages/add-activity/add-activity';
-import { ViewActivityPage } from '../pages/view-activity/view-activity';
+
+
+//pipes
+import { orderByPipe } from '../pipes/orderBy.pipe';
+import { AddObservationPage } from '../pages/add-observation/add-observation';
+import { CameraService } from '../services/camera.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +60,11 @@ import { ViewActivityPage } from '../pages/view-activity/view-activity';
     PhasePage,
     AddActivityPage,
     ViewActivityPage,
-    EditActivityPage
+    EditActivityPage,
+    ActivitiesPage,
+    orderByPipe,
+    ObservationsPage,
+    AddObservationPage
   ],
   imports: [
     BrowserModule,
@@ -78,14 +91,21 @@ import { ViewActivityPage } from '../pages/view-activity/view-activity';
     PhasePage,
     AddActivityPage,
     ViewActivityPage,
-    EditActivityPage
+    EditActivityPage,
+    ActivitiesPage,
+    ObservationsPage,
+    AddObservationPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
-    DatabaseService
+    DatabaseService,
+    CameraService,
+    orderByPipe,
+    FileChooser,
+    Camera
   ]
 })
 export class AppModule {}

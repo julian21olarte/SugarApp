@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="green">
     <ion-buttons start>
       <button ion-button icon-only menuToggle color="light">
         <ion-icon name="menu" ></ion-icon>
@@ -19,13 +19,13 @@
 
 
 <ion-content>
-  <ion-list *ngIf="((cycles | async)?.length)">
+  <ion-list *ngIf="cycles.length  && !showLoading">
     <ion-list-header>
       Mis ciclos
     </ion-list-header>
-    <button ion-item *ngFor="let cycle of (cycles | async)" (click)="viewCycle(cycle)">
+    <button ion-item *ngFor="let cycle of (cycles)" (click)="viewCycle(cycle)">
       <ion-avatar item-start>
-        <img src="../../assets/imgs/logo.png">
+        <img src="./assets/imgs/logo.png">
       </ion-avatar>
       <h3 color="primary">{{cycle.name}}</h3>
       <!--<p>Duracion: {{(cycle.duration/12)}} año(s)</p>-->
@@ -33,7 +33,12 @@
       <p>Creado {{(cycle.start_date | amTimeAgo)}}</p>
     </button>
   </ion-list>
-  <ion-spinner padding name="dots" *ngIf="!((cycles | async)?.length)"></ion-spinner>
+  <ion-spinner padding name="circles" *ngIf="showLoading && !cycles.length"></ion-spinner>
+  <ion-item *ngIf="!showLoading && !cycles.length">
+    <ion-list-header>
+      No hay ciclos de produccion todavia...
+    </ion-list-header>
+  </ion-item>
   <ion-fab bottom right #fab>
     <button ion-fab color="danger">
       <ion-icon name="more"></ion-icon>
@@ -41,7 +46,7 @@
     <ion-fab-list side="top">
       <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
       <button ion-fab><ion-icon name="list-box"></ion-icon></button>
-      <button ion-fab color="primary" (click)="addCyclePage(fab)"><ion-icon name="add"></ion-icon></button>
+      <button ion-fab color="secondary" (click)="addCyclePage(fab)"><ion-icon name="add"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 </ion-content>

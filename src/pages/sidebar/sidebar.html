@@ -13,16 +13,21 @@
   </ion-header>-->
   <ion-header class="card-background-page">
     <ion-card>
-      <img src="../../assets/imgs/cover_sidebar.jpg"/>
-      <div class="card-title">username</div>
-      <div class="card-subtitle">email@email.com</div>
+      <img src="./assets/imgs/cover_sidebar.jpg"/>
+      <ion-avatar item-left>
+        <img src="./assets/imgs/cover_sidebar.jpg">
+      </ion-avatar>
+      <div class="card-title">{{current_user.email}}</div>
+      <div class="card-subtitle">{{current_user.email}}</div>
     </ion-card>
   </ion-header>
   <ion-content>
+    <br>
+    <br>
     <ion-list>
       <button ion-item *ngFor="let page of pages" (click)="setPage(page.component)" menuClose >
         <ion-icon item-left name="{{page.icon}}" color="green"></ion-icon>
-        {{page.title}}
+        <p>{{page.title}}</p>
       </button>
     </ion-list>
   </ion-content>

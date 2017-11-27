@@ -20,7 +20,7 @@ export class AddActivityPage {
   public reminder:any;
   public phase: number;
   public minDate:string;
-  public cycle:any;
+  public cycle_id:string;
   public monthShortNames: Array<string>;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -31,7 +31,7 @@ export class AddActivityPage {
     this.monthShortNames = [
       'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
     ];
-    this.cycle = this.navParams.get('cycle');
+    this.cycle_id = this.navParams.get('cycle_id');
 
   }
 
@@ -50,7 +50,7 @@ export class AddActivityPage {
       reminder: new Date(this.reminder).getTime(),
       phase: this.phase
     };
-    this.database.insert('cycles/'+this.cycle.id+'/activities', data)
+    this.database.insert('cycles/'+this.cycle_id+'/activities', data)
     .then(response => {
       this.toastCtrl.create({
         message: 'Actividad agregada correctamente!',

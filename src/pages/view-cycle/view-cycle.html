@@ -6,7 +6,12 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="green">
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle color="light">
+        <ion-icon name="menu" ></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>{{cycle.name}}</ion-title>
   </ion-navbar>
 
@@ -19,9 +24,9 @@
       <ion-icon name="more"></ion-icon>
     </button>
     <ion-fab-list side="top">
-      <button ion-fab color="danger" (click)="deleteCycle()"><ion-icon name="trash"></ion-icon></button>
-      <button ion-fab color="secondary" (click)="editCycle()"><ion-icon name="create"></ion-icon></button>
-      <button ion-fab color="primary" (click)="addActivity()"><ion-icon name="alarm"></ion-icon></button>
+      <button ion-fab color="danger" (click)="deleteCycle(fab)"><ion-icon name="trash"></ion-icon></button>
+      <button ion-fab color="secondary" (click)="editCycle(fab)"><ion-icon name="create"></ion-icon></button>
+      <button ion-fab color="primary" (click)="addActivity(fab)"><ion-icon name="alarm"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 
@@ -31,7 +36,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-card>
-        <img src="../assets/imgs/farm.png"/>
+        <img src="./assets/imgs/farm.png"/>
         <ion-card-content>
           <ion-card-title color="primary">
             <button ion-button clear full color="danger">Progreso</button>
@@ -41,11 +46,11 @@
     </ion-card-content>
   </ion-card>
   <ion-card *ngIf="nextAct?.name">
-    <ion-card-header color="primary">
-        <label>Proxima Actividad</label>
-        <ion-icon item-end name="alarm" color="purple"></ion-icon>
-    </ion-card-header>
     <ion-card-content>
+        <ion-item class="nextActivity-color">
+            Proxima Actividad
+            <ion-icon item-right name="alarm" color="danger"></ion-icon>
+        </ion-item>
       <ion-item >
           <h3>{{nextAct.name}}</h3>
           <p>Recordatorio: {{nextAct.reminder | amTimeAgo}}
@@ -56,7 +61,7 @@
   </ion-card>
   <ion-card>
     <ion-card-content>
-      <button ion-button outline full color="primary">Todas las actividades</button>
+      <button ion-button outline full color="primary" (click)="showAllActivities()" >Todas las actividades</button>
     </ion-card-content>
   </ion-card>
 </ion-content>

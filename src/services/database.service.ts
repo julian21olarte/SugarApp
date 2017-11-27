@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase';
 
 @Injectable()
 export class DatabaseService {
@@ -9,6 +10,13 @@ export class DatabaseService {
 
   public get(item:string) {
     return this.database.list(item).valueChanges();
+  }
+
+
+  public getBy(item:string, queryBy:any) {
+    return this.database.list(item, ref => 
+      ref.orderByChild( queryBy.orderByChild )
+      .equalTo( queryBy.equalTo )).valueChanges();
   }
 
 
@@ -34,4 +42,12 @@ export class DatabaseService {
     return this.database.list('phases').valueChanges();
   }
 
+  public uploadImage(path:string, file:any) {
+    let meta = {
+      contentType: 'image/jpeg'
+    }
+    return firebase.storage().ref()
+      .child(path).putString(file, 'data_url', meta);
+  }
+  
 }

@@ -46,11 +46,19 @@ $colors: (
   secondary:  #29b851,
   danger:     #f53d3d,
   light:      #f4f4f4,
+  inputlight: (
+    base:     #f4f4f4,
+    contrast: #f4f4f4
+  ),
   dark:       #222,
   registry:   orange,
-  green:    #699152,
+  green:    (
+      base:     #699152,
+      contrast: white
+  ),
   fabBlue:    rgb(38, 150, 241),
-  purple:   rgb(91, 80, 192)
+  purple:   rgb(128, 90, 197),
+  warning:    #c2d609
 );
 
 

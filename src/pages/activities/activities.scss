@@ -1,0 +1,9 @@
+page-activities {
+  .text-danger {
+    color : color($colors, danger);
+  }
+  .text-success {
+    color: color($colors, secondary);
+  }
+
+}
