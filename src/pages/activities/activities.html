@@ -18,7 +18,10 @@
       <ion-list-header>
         Mis actividades
       </ion-list-header>
-      <button ion-item *ngFor="let activity of activities | async | orderBy: 'reminder': 'desc'" (click)="viewActivity(activity)" >
+      <button ion-item *ngFor="let activity of activities | async | orderBy: 'reminder': 'desc'" (click)="viewActivity(activity)">
+        <ion-avatar item-left>
+          <img src="./assets/imgs/watch_icon2.png">
+        </ion-avatar>
         <h3>{{activity.name}}</h3>
         <p>Recordatorio: {{activity.reminder | amTimeAgo}}</p>
         <p *ngIf="activity.reminder < getCurrentTime()" class="text-danger">Finalizada</p>

@@ -23,6 +23,7 @@ export class EditCyclePage {
     public database: DatabaseService,
     public toasCtrl: ToastController) {
     this.cycle = this.navParams.get('cycle');
+    console.log(this.cycle);
   }
 
   ionViewDidLoad() {
@@ -30,11 +31,13 @@ export class EditCyclePage {
   }
 
 
-  editCycle(fab: FabContainer) {
-    fab.close();
+  editCycle() {
     this.cycle.end_date = 
-    new Date( moment(this.cycle.start_date, "DD/MM/YYYY h:mm:ss")
-    .add((this.cycle.duration/12), 'y').format()).getTime();
+    new Date(
+      new Date().setFullYear( 
+        new Date(this.cycle.start_date)
+        .getFullYear() + (this.cycle.duration/12) 
+      )).getTime();
 
     this.database.update('cycles/'+this.cycle.id, this.cycle)
     .then(response => {

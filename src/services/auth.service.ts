@@ -7,9 +7,13 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
+  userData:any;
   
   constructor( private firebaseAuth: AngularFireAuth ) { 
     this.user = firebaseAuth.authState;
+    this.user.subscribe(userData => {
+      this.userData = userData;
+    })
   }
 
 //signup new user

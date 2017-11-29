@@ -10,7 +10,17 @@ page-login {
     width: 100vw;
     height: 100vh;
     position: fixed;
-    filter: grayscale(20%) blur(1px) brightness(0.4);
+    filter: grayscale(25%) blur(1px) brightness(0.4);
+  }
+  .img.logo_login {
+    background: transparent !important;
+    max-height: 150px !important;
+    max-width: 150px;
+  }
+  .card-background-page {
+    background: transparent !important;
+    border: none;
+    box-shadow: 0;
   }
 
   .item-input-login {
