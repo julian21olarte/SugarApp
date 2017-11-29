@@ -39,8 +39,16 @@ export class LoginPage {
     load.present();
     load.onDidDismiss(() => {
       this.authService.login(this.email, this.password)
-      .then(response => {
-        this.navCtrl.push(SidebarPage);
+      .then(user => {
+        if( user.emailVerified ) {
+          this.navCtrl.push(SidebarPage);
+        }
+        else {
+          this.toastCtrl.create({
+            message: 'El usuario existe, pero no ha sido verificado por Email.',
+            duration: 3000
+          }).present();
+        }
       })
       .catch(err => {
         this.toastCtrl.create({

@@ -42,6 +42,7 @@ export class RegisterPage {
     }
     this.authService.signup(this.email, this.password)
     .then(response => {
+      response.sendEmailVerification();
       let load = this.loading.create({
         content: 'Cargando...',
         duration: 2000
