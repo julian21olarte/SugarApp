@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController } from 'ionic-angular';
+import { NavController, ToastController, LoadingController } from 'ionic-angular';
 import { DatabaseService } from '../../services/database.service';
 import { AuthService } from '../../services/auth.service';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
@@ -23,7 +23,8 @@ export class AddCyclePage implements OnInit{
   constructor(public navCtrl: NavController,
     public toastCtrl: ToastController,
     public db: DatabaseService,
-    public authService: AuthService) {
+    public authService: AuthService,
+    public loading: LoadingController) {
   }
 
   ngOnInit() {
@@ -46,6 +47,9 @@ export class AddCyclePage implements OnInit{
       new Date().setFullYear( 
         start_date.getFullYear() + (this.duration/12) 
       ));
+    let load = this.loading.create({
+      content: 'Cargando...'
+    });
 
     this.db.insert( 'cycles', {
       userId: this.currentUser.uid,
@@ -56,6 +60,7 @@ export class AddCyclePage implements OnInit{
       activities: []
     })
     .then( response => {
+      load.dismiss();
       this.navCtrl.pop();
       this.toastCtrl.create({
         message: 'Ciclo agregado correctamente!',

@@ -4,6 +4,7 @@ import { FileChooser } from '@ionic-native/file-chooser';
 import { DatabaseService } from '../../services/database.service';
 import { CameraService } from '../../services/camera.service';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
+import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 
 /**
  * Generated class for the AddObservationPage page.
@@ -30,7 +31,8 @@ export class AddObservationPage {
     public file: FileChooser, 
     public databaseService: DatabaseService,
     public cameraService: CameraService,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public loading: LoadingController) {
       this.activityId = this.navParams.get('activity');
       this.image = '';
   }
@@ -63,8 +65,13 @@ export class AddObservationPage {
           url: photoTaked.snapshot.downloadURL,
           createdAt: new Date().getTime()
         }
+        let load = this.loading.create({
+          content: 'Cargando...'
+        });
+        load.present();
         this.databaseService.insert('observations', newObservation)
         .then(response => {
+          load.dismiss();
           this.navCtrl.pop();
           this.toastCtrl.create({
             message: 'Observacion agregada correctamente!',

@@ -30,7 +30,10 @@
           </ion-label>
           <ion-textarea [(ngModel)]="description" name="description"></ion-textarea>
         </ion-item>
-        <button ion-button full outline color="warning" (click)="takeImg()">Tomar imagen</button>
+        <button ion-button full outline color="warning" (click)="takeImg()">
+          <ion-icon item-start name="camera"></ion-icon>
+          Tomar imagen
+        </button>
       </form>
       <br><br>
       <ion-card class="card-background-page" *ngIf="image.length">

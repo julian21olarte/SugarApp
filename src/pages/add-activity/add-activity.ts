@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import moment from 'moment';
 import { DatabaseService } from '../../services/database.service';
+import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 
 /**
  * Generated class for the AddActivityPage page.
@@ -25,7 +26,9 @@ export class AddActivityPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public database: DatabaseService,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public loading: LoadingController) {
+
     this.reminder = moment().format();
     this.minDate = moment().format();
     this.monthShortNames = [
@@ -50,8 +53,12 @@ export class AddActivityPage {
       reminder: new Date(this.reminder).getTime(),
       phase: this.phase
     };
+    let load = this.loading.create({
+      content: 'Cargando...'
+    });
     this.database.insert('cycles/'+this.cycle_id+'/activities', data)
     .then(response => {
+      load.dismiss();
       this.toastCtrl.create({
         message: 'Actividad agregada correctamente!',
         duration: 2000
