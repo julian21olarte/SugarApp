@@ -26,7 +26,7 @@ export class SidebarPage {
   constructor(public navParams: NavParams, public authService: AuthService) {
     this.pages = [
       {title: 'Inicio', component: HomePage, icon: 'stats'},
-      {title: 'Ciclos', component: CyclesPage, icon: 'leaf'},
+      {title: 'Mis Cultivos', component: CyclesPage, icon: 'leaf'},
       {title: 'Herramientas', component: ContactPage, icon: 'construct'},
       {title: 'Contacto', component: ContactPage, icon: 'contact'}
     ];

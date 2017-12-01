@@ -19,6 +19,9 @@ export class DatabaseService {
     return this.database.list(item).valueChanges();
   }
 
+  public getObject(item:string) {
+    return this.database.object( item ).valueChanges();
+  }
 
   public getBy(item:string, queryBy:any) {
     return this.database.list(item, ref => 

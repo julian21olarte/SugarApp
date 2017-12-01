@@ -14,9 +14,14 @@
 
 
 <ion-content padding>
+    <div class="background-img">
+    </div>
     <div class="form register-form" >
       <ion-row>
         <ion-col>
+          <ion-avatar item-center>
+              <img height="200px" src="./assets/imgs/logo_final2.png">
+            </ion-avatar>
           <ion-item class="item-input-login">
             <ion-label color="primary" floating >Email</ion-label>
             <ion-input [(ngModel)]="email" ></ion-input>
@@ -38,7 +43,7 @@
       <br>
       <ion-row>
         <ion-col>
-          <button ion-button full color="secondary" (click)="register()">Registrarse</button>
+          <button ion-button outline full color="registry" (click)="register()">Registrarse</button>
         </ion-col>
       </ion-row>
 

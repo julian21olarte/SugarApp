@@ -22,7 +22,7 @@
         <ion-avatar item-left>
           <img src="./assets/imgs/watch_icon2.png">
         </ion-avatar>
-        <h3>{{activity.name}}</h3>
+        <h3 text-capitalize>{{activity.name}}</h3>
         <p>Recordatorio: {{activity.reminder | amTimeAgo}}</p>
         <p *ngIf="activity.reminder < getCurrentTime()" class="text-danger">Finalizada</p>
         <p *ngIf="activity.reminder > getCurrentTime()" class="text-success">En progreso</p>

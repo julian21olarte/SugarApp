@@ -13,17 +13,23 @@ export class HomePage {
   
   barChart: any;
   public cycles:Array<any>;
-  public cycleNames: Array<string>;
+  public cyclesData: Array<any>;
   public current_user:any;
 
   constructor(public navCtrl: NavController, public databaseService: DatabaseService, public authService: AuthService) {
+
     this.databaseService.getBy('cycles', {
       orderByChild: 'userId',
       equalTo: this.authService.userData.uid
     }).subscribe(cycles => {
-
       this.cycles = cycles;
-      this.cycleNames = this.cycles.map(a => a.name);
+      this.cyclesData = this.cycles.map((cycle, index) => {
+          return {
+            name: cycle.name, 
+            nick: 'Ciclo '+(index++),
+            color: this.random_rgba()
+          }
+      })
       this.loadCharts();
     })
     
@@ -37,29 +43,14 @@ export class HomePage {
   private loadCharts() {
     this.barChart = new Chart(this.barCanvas.nativeElement, {
 
-        type: 'horizontalBar',
+        type: 'bar',
         data: {
-            //labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            labels: this.cycleNames,
+            labels: this.cyclesData.map(a => a.nick),
             datasets: [{
-                label: 'Progreso de los ciclos',
+                label: 'Progreso de los Cultivos',
                 data: [12, 50, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
+                backgroundColor: this.cyclesData.map(a => a.color),
+                borderColor: this.cyclesData.map(a => a.color),
                 borderWidth: 1
             }]
         },
@@ -79,6 +70,6 @@ export class HomePage {
   
     public random_rgba() {
         var o = Math.round, r = Math.random, s = 255;
-        return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+        return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + 1 + ')';
     }
 }

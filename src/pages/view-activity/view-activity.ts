@@ -24,17 +24,21 @@ export class ViewActivityPage {
   public activity:any;
   public cycle_id:string;
   public observations: Observable<any>;
+  public phase:any;
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public databaseService: DatabaseService,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController) {
+      
     this.activity = this.navParams.get('activity');
     this.cycle_id = this.navParams.get('cycle_id');
     this.observations = this.databaseService.getBy('observations',{
       orderByChild: 'activityId',
       equalTo: this.activity.id
     });
+
+    this.phase = this.databaseService.getObject('phases/'+this.activity.phase);
   }
 
 

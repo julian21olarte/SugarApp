@@ -23,7 +23,7 @@
     <br>
     <ion-list>
       <button ion-item *ngFor="let page of pages" (click)="setPage(page.component)" menuClose >
-        <ion-icon item-left name="{{page.icon}}" color="green"></ion-icon>
+        <ion-icon item-start name="{{page.icon}}" color="green"></ion-icon>
         <p>{{page.title}}</p>
       </button>
     </ion-list>

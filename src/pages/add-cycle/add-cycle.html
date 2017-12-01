@@ -18,36 +18,28 @@
 
 
 <ion-content padding>
-    Agregar ciclo de produccion
-    <form>
-      <ion-list>
-        <ion-item>
-          <ion-label color="green" floating >
-            <ion-icon name="person"></ion-icon>
-            Nombre
-          </ion-label>
-          <ion-input [(ngModel)]="name" name="name"></ion-input>
-        </ion-item>
-        <br><br>
-        <ion-item>
-          <ion-label color="green">
-            <ion-icon name="time"></ion-icon> 
-            Duracion
-          </ion-label>
-          <ion-select [(ngModel)]="duration" name="duration" >
-            <ion-option value="12">1 año</ion-option>
-            <ion-option value="24">2 años</ion-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
-    </form>
-    <br>
-    <br>
-    <br>
+    Agregar ciclo de produccion     
+    <ion-item>
+      <ion-label color="primary" floating >
+        <ion-icon name="person"></ion-icon>
+        Nombre
+      </ion-label>
+      <ion-input [(ngModel)]="name" name="name"></ion-input>
+    </ion-item>
+    <br><br>
+    <ion-item>
+      <ion-label color="primary">
+        <ion-icon name="time"></ion-icon> 
+        Duracion
+      </ion-label>
+      <ion-select [(ngModel)]="duration" name="duration" >
+        <ion-option value="12">1 año</ion-option>
+        <ion-option value="24">2 años</ion-option>
+      </ion-select>
+    </ion-item>
+    <br><br>
     <button ion-button full color="secondary" (click)="addCycle()">Agregar</button>
 
     <br>
     <button ion-button full color="danger" (click)="cancel()">Cancelar</button>
-
-
 </ion-content>

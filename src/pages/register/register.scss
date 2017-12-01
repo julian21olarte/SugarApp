@@ -1,6 +1,27 @@
 page-register {
 
-  ion-content {
+  .background-img{
+    background-image: url('../assets/imgs/register_bg.jpg');
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    filter: grayscale(15%) blur(1px) brightness(0.6);
+  }
+  .item-input-login {
+    background-color: transparent;
 
+    & ion-label {
+      color: white !important;
+    }
+  }
+
+  ion-avatar img {
+    display: block;
+    margin: auto;
   }
 }
