@@ -34,5 +34,4 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 src/app/firebase.ts
-resources/android
-resources/ios
+resources/

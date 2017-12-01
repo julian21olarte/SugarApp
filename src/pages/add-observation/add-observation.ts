@@ -35,6 +35,7 @@ export class AddObservationPage {
     public loading: LoadingController) {
       this.activityId = this.navParams.get('activity');
       this.image = '';
+      this.imageData = '';
   }
 
   ionViewDidLoad() {
@@ -52,55 +53,86 @@ export class AddObservationPage {
       return false;
     }
 
-    let photoTaked = this.databaseService.uploadImage(
-      `imgs/img_${new Date().getTime()}.jpg`,
-      this.cameraService.getBase64Image(this.imageData));
+    //create new empty observation and get id
+    let id = this.databaseService.getId('observations');
 
-      photoTaked
-      .then(img => {
-        let newObservation = {
-          activityId: this.activityId,
-          name: this.name,
-          description: this.description,
-          url: photoTaked.snapshot.downloadURL,
-          createdAt: new Date().getTime()
-        }
-        let load = this.loading.create({
-          content: 'Cargando...'
-        });
-        load.present();
-        this.databaseService.insert('observations', newObservation)
-        .then(response => {
-          load.dismiss();
-          this.navCtrl.pop();
-          this.toastCtrl.create({
-            message: 'Observacion agregada correctamente!',
-            duration: 3000
-          }).present();
-        })
-        .catch(err => {
-          console.error(err);
-        });
-      })
-      .catch(err => console.error('no se guardo la imagen'));
+
+    //new observation object
+    let newObservation = {
+      id: id,
+      activityId: this.activityId,
+      name: this.name,
+      description: this.description,
+      //url: photoTaked.snapshot.downloadURL,
+      createdAt: new Date().getTime()
+    }
+
+
+    //loading 
+    let load = this.loading.create({
+      content: 'Cargando...'
+    });
+    load.present();
+
+
+    this.databaseService.insert('observations', newObservation)
+    .then(response => {
+
+      //upload img and update observation img url if a photo was taked.
+      if( this.imageData.length ) {
+        this.uploadImg( id );
+      }
+
+
+      load.dismiss();
+
+
+      this.navCtrl.pop();
+      this.toastCtrl.create({
+        message: 'Observacion agregada correctamente!',
+        duration: 3000
+      }).present();
+
+
+    })
+    .catch(err => {
+      console.error( err );
+    });
 
   }
 
 
 
+
+
+  /**
+   * upload and update created observation img
+   * @param id (observation)
+   */
+  private uploadImg( id:string ) {
+    let photoTaked = this.databaseService.uploadImage(
+      `imgs/img_${new Date().getTime()}.jpg`,
+      this.cameraService.getBase64Image(this.imageData));
+      photoTaked
+      .then(img => {
+        this.databaseService.update('observations/' + id, {
+          url: photoTaked.snapshot.downloadURL
+        })
+      })
+      .catch(err => console.error('no se guardo la imagen'));
+  }
+
+
+
+
+
+
+/**
+ * take a picture with device camera.
+ */
   public takeImg() {
    this.cameraService.takePhoto()
    .then(imgData => {
-      /*let photoTaked = this.databaseService.uploadImage(
-        `imgs/img_${new Date().getTime()}.jpg`,
-        this.cameraService.getBase64Image(imgData));
-
-        photoTaked
-        .then(img => {
-          this.image = imgData
-        })
-        .catch(err => console.error(err));*/
-
         this.image = this.cameraService.getBase64Image(imgData);
         this.imageData = imgData;
    })

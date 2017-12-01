@@ -8,6 +8,13 @@ export class DatabaseService {
 
   constructor(public database: AngularFireDatabase) { }
 
+  
+  public getId(item:string) {
+    console.log(item);
+    let key = this.database.list( item ).push({}).key;
+    return key;
+  }
+  
   public get(item:string) {
     return this.database.list(item).valueChanges();
   }
