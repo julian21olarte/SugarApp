@@ -59,5 +59,9 @@ export class DatabaseService {
     return firebase.storage().ref()
       .child(path).putString(file, 'data_url', meta);
   }
+
+  public downloadImg(path:string) {
+    return firebase.storage().refFromURL(path).getDownloadURL();
+  }
   
 }

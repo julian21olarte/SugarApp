@@ -54,7 +54,7 @@ export class AddObservationPage {
     }
 
     //create new empty observation and get id
-    let id = this.databaseService.getId('observations');
+    const id = this.databaseService.getId('observations');
 
 
     //new observation object
@@ -80,7 +80,7 @@ export class AddObservationPage {
 
       //upload img and update observation img url if a photo was taked.
       if( this.imageData.length ) {
-        this.uploadImg( id );
+        this.uploadImg( newObservation.id );
       }
 
 

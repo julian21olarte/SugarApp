@@ -29,20 +29,13 @@
       <button ion-fab color="primary" (click)="addActivity(fab)"><ion-icon name="alarm"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
-
   <ion-card>
     <ion-card-header color="primary">
-      Timeline
+      Progreso
     </ion-card-header>
     <ion-card-content>
-      <ion-card>
-        <img src="./assets/imgs/farm.png"/>
-        <ion-card-content>
-          <ion-card-title color="primary">
-            <button ion-button clear full color="danger">Progreso</button>
-          </ion-card-title>
-        </ion-card-content>
-      </ion-card>
+      <canvas #chartCanvas height="200px"></canvas>
+      <button ion-button clear full color="danger">Progreso</button>
     </ion-card-content>
   </ion-card>
   <ion-card *ngIf="nextAct?.name">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { DatabaseService } from '../../services/database.service';
@@ -11,6 +11,7 @@ import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import * as _ from 'lodash';
 import { ActivitiesPage } from '../activities/activities';
 import { FabContainer } from 'ionic-angular/components/fab/fab-container';
+import { Chart } from 'chart.js';
 
 /**
  * Generated class for the ViewCyclePage page.
@@ -28,6 +29,8 @@ export class ViewCyclePage implements OnInit{
   public activities:Array<any>;
   public phases: any;
   public nextAct: any;
+  @ViewChild('chartCanvas') chartCanvas;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
@@ -44,6 +47,7 @@ export class ViewCyclePage implements OnInit{
       this.activities = acts;
       this.nextAct = this.nextActivity();
       console.log(this.nextAct);
+      this.loadCharts();
     });
 
     this.databaseService.getPhases()
@@ -127,6 +131,44 @@ export class ViewCyclePage implements OnInit{
 
   public showAllActivities() {
     this.navCtrl.push(ActivitiesPage, {cycle_id: this.cycle.id});
+  }
+
+
+  public loadCharts() {
+      var myLineChart = new Chart(this.chartCanvas.nativeElement, {
+        type: 'line',
+        data: {
+          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+          datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+              yAxes: [{
+                  stacked: true
+              }]
+          }
+      }
+    });
   }
 
 }

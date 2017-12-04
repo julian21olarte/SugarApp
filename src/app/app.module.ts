@@ -42,6 +42,11 @@ import { firebaseConfig } from './firebase';
 import { orderByPipe } from '../pipes/orderBy.pipe';
 import { AddObservationPage } from '../pages/add-observation/add-observation';
 import { CameraService } from '../services/camera.service';
+import { WeatherService } from '../services/weather.service';
+import { Http } from '@angular/http';
+import { HttpModule } from '@angular/http';
+import { Geolocation } from '@ionic-native/geolocation';
+import { ViewObservationPage } from '../pages/view-observation/view-observation';
 
 @NgModule({
   declarations: [
@@ -64,7 +69,8 @@ import { CameraService } from '../services/camera.service';
     ActivitiesPage,
     orderByPipe,
     ObservationsPage,
-    AddObservationPage
+    AddObservationPage,
+    ViewObservationPage
   ],
   imports: [
     BrowserModule,
@@ -72,7 +78,8 @@ import { CameraService } from '../services/camera.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    MomentModule
+    MomentModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -94,7 +101,8 @@ import { CameraService } from '../services/camera.service';
     EditActivityPage,
     ActivitiesPage,
     ObservationsPage,
-    AddObservationPage
+    AddObservationPage,
+    ViewObservationPage
   ],
   providers: [
     StatusBar,
@@ -103,9 +111,11 @@ import { CameraService } from '../services/camera.service';
     AuthService,
     DatabaseService,
     CameraService,
+    WeatherService,
     orderByPipe,
     FileChooser,
-    Camera
+    Camera,
+    Geolocation
   ]
 })
 export class AppModule {}

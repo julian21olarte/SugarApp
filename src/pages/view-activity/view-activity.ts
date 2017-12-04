@@ -7,6 +7,7 @@ import { AlertController } from 'ionic-angular/components/alert/alert-controller
 import { FabContainer } from 'ionic-angular/components/fab/fab-container';
 import { Observable } from 'rxjs/Observable';
 import { AddObservationPage } from '../add-observation/add-observation';
+import { ViewObservationPage } from '../view-observation/view-observation';
 
 /**
  * Generated class for the ViewActivityPage page.
@@ -25,6 +26,7 @@ export class ViewActivityPage {
   public cycle_id:string;
   public observations: Observable<any>;
   public phase:any;
+  
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     public databaseService: DatabaseService,
@@ -38,7 +40,7 @@ export class ViewActivityPage {
       equalTo: this.activity.id
     });
 
-    this.phase = this.databaseService.getObject('phases/'+this.activity.phase);
+    this.phase = this.databaseService.getObject(`phases/${this.activity.phase}`);
   }
 
 
@@ -95,7 +97,6 @@ export class ViewActivityPage {
 
 
   public showObservation(observation:any) {
-
-
+    this.navCtrl.push(ViewObservationPage, {observation});
   }
 }

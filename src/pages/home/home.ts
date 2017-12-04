@@ -1,8 +1,9 @@
 import { Component, ViewChild  } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { DatabaseService } from '../../services/database.service';
 import { AuthService } from '../../services/auth.service';
+import { WeatherService } from '../../services/weather.service';
 
 @Component({
   selector: 'page-home',
@@ -15,8 +16,23 @@ export class HomePage {
   public cycles:Array<any>;
   public cyclesData: Array<any>;
   public current_user:any;
+  public weather:any;
 
-  constructor(public navCtrl: NavController, public databaseService: DatabaseService, public authService: AuthService) {
+  constructor(public navCtrl: NavController, 
+    public databaseService: DatabaseService, 
+    public authService: AuthService, 
+    public weatherService: WeatherService,
+    public platform: Platform) {
+        
+    this.weatherService.getCoords()
+    .then(resp => {
+        this.weatherService.getWeather(resp.coords.latitude, resp.coords.longitude)
+        //.map(res => res.json())
+        .subscribe(res => {
+            this.weather = res.json();
+            console.log(this.weather.weather[0]);
+        })
+    });
 
     this.databaseService.getBy('cycles', {
       orderByChild: 'userId',
@@ -31,13 +47,15 @@ export class HomePage {
           }
       })
       this.loadCharts();
-    })
+    });
+
+    
     
   }
 
 
   ionViewDidLoad() {
-
+   
   }
 
   private loadCharts() {
