@@ -35,12 +35,16 @@ export class ViewActivityPage {
       
     this.activity = this.navParams.get('activity');
     this.cycle_id = this.navParams.get('cycle_id');
+
+    this.phase = this.databaseService.getObject(`phases/${this.activity.phase}`);
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad ViewObservationPage');
     this.observations = this.databaseService.getBy('observations',{
       orderByChild: 'activityId',
       equalTo: this.activity.id
     });
-
-    this.phase = this.databaseService.getObject(`phases/${this.activity.phase}`);
   }
 
 
@@ -90,6 +94,7 @@ export class ViewActivityPage {
   }
 
 
+
   public showAddObservation(fab: FabContainer) {
     fab.close();
     this.navCtrl.push(AddObservationPage, {activity: this.activity.id});
@@ -99,4 +104,6 @@ export class ViewActivityPage {
   public showObservation(observation:any) {
     this.navCtrl.push(ViewObservationPage, {observation});
   }
+
+  
 }

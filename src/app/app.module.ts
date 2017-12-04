@@ -1,3 +1,4 @@
+import { EditObservationPage } from './../pages/edit-observation/edit-observation';
 import { EditActivityPage } from './../pages/edit-activity/edit-activity';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -70,7 +71,8 @@ import { ViewObservationPage } from '../pages/view-observation/view-observation'
     orderByPipe,
     ObservationsPage,
     AddObservationPage,
-    ViewObservationPage
+    ViewObservationPage,
+    EditObservationPage
   ],
   imports: [
     BrowserModule,
@@ -102,7 +104,8 @@ import { ViewObservationPage } from '../pages/view-observation/view-observation'
     ActivitiesPage,
     ObservationsPage,
     AddObservationPage,
-    ViewObservationPage
+    ViewObservationPage,
+    EditObservationPage
   ],
   providers: [
     StatusBar,

@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="green">
     <ion-title>Detalle de observacion</ion-title>
   </ion-navbar>
 
@@ -22,8 +22,20 @@
       <h2>{{observation.name}}</h2>
       <p>{{observation.description}}</p>
       <p>Creada {{observation.createdAt | amTimeAgo}}</p>
-      <img *ngIf="observation.url" src="{{observationImg}}">
+      <br>
+      <img *ngIf="observationImg" src="{{observationImg}}">
+      <ion-spinner padding item-center name="circles" *ngIf="observation.url && !observationImg"></ion-spinner>
     </ion-card-content>
   </ion-card>
+
+  <ion-fab bottom right #fab>
+    <button ion-fab color="fabBlue">
+      <ion-icon name="more"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <button ion-fab color="danger" (click) ="deleteObservation(observation.id, fab)"><ion-icon name="trash" ></ion-icon></button>
+      <button ion-fab color="primary" (click) ="showEditObservation(fab, observation)"><ion-icon name="create"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 
 </ion-content>

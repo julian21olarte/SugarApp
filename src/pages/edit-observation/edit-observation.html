@@ -6,14 +6,14 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="green">
     <ion-title>Editar observacion</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content>
+<ion-content padding>
     Editar observacion
     <form>
       <ion-item>
@@ -31,14 +31,16 @@
         </ion-label>
         <ion-textarea [(ngModel)]="observation.description" name="description"></ion-textarea>
       </ion-item>
-      <button ion-button full outline color="warning" (click)="takeImg()">
-        <ion-icon item-start name="camera"></ion-icon>
-        Tomar imagen
-      </button>
+      <ion-item >
+        <button ion-button full outline color="warning">
+          <ion-icon item-start name="camera"></ion-icon>
+          Tomar imagen
+        </button>
+      </ion-item>
     </form>
     <br><br>
-    <ion-card class="card-background-page" *ngIf="image.length">
-      <img width="30" height="30" src="{{image}}" alt="image taked"/>
+    <ion-card class="card-background-page" *ngIf="observation.url">
+      <img src="{{observationImg}}" alt="image taked"/>
     </ion-card>
     <br>
     <br>

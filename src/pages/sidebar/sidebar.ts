@@ -27,6 +27,7 @@ export class SidebarPage {
     this.pages = [
       {title: 'Inicio', component: HomePage, icon: 'stats'},
       {title: 'Mis Cultivos', component: CyclesPage, icon: 'leaf'},
+      {title: 'Tiempo', component: ContactPage, icon: 'cloud'},
       {title: 'Herramientas', component: ContactPage, icon: 'construct'},
       {title: 'Contacto', component: ContactPage, icon: 'contact'}
     ];
