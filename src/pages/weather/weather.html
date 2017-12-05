@@ -18,21 +18,41 @@
 
 
 <ion-content>
-  <ion-card *ngIf="weather" color="weatherBlue">
+  <ion-card color="weatherBlue">
     <ion-card-header>
       Clima
+      <ion-icon name="partly-sunny" item-right color="yellowSun"></ion-icon>
     </ion-card-header>
     <ion-card-content>
-      <ion-item color="weatherBlue">
-        <ion-avatar item-left>
+      <ion-spinner padding name="circles" *ngIf="!weather"></ion-spinner>
+      <ion-item color="weatherBlue" *ngIf="weather">
+        <ion-avatar item-left  class="avatar-weather-icon">
           <img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png">
         </ion-avatar>
         <h2>{{weather.name}} - {{weather.sys.country}}</h2>
         <p>Humedad: {{weather.main.humidity}}%</p>
-        <p>Temperatura: {{ (weather.main.temp - 273.15) }}°C</p>
+        <p>Temperatura: {{ (weather.main.temp - 273.15).toFixed(2) }}°C</p>
         {{weather | json}}
       </ion-item>
     </ion-card-content>
   </ion-card>
 
+  <ion-card>
+    <ion-card-header color="primary">
+      Pronostico
+    </ion-card-header>
+    <ion-card-content >
+      <ion-spinner padding name="circles" *ngIf="!forecastWeather"></ion-spinner>
+      <ion-list *ngIf="forecastWeather">
+        <ion-item *ngFor="let forecast of forecastWeather.list">
+          <ion-avatar item-left  class="avatar-weather-icon">
+            <img src="http://openweathermap.org/img/w/{{forecast.weather[0].icon}}.png">
+          </ion-avatar>
+          <h2>Temperatura: {{ (forecast.main.temp - 273.15).toFixed(2) }}°C</h2>
+          <p>{{ forecast.dt_txt | amLocale:'es' | amDateFormat:'MMM D YYYY - h:mm a'}}</p>
+          <p>Humedad: {{forecast.main.humidity}}%</p>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

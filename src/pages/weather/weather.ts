@@ -14,24 +14,39 @@ import { WeatherService } from '../../services/weather.service';
   templateUrl: 'weather.html',
 })
 export class WeatherPage {
+
   private weather:any;
+  private forecastWeather:any;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public weatherService: WeatherService) {
-  }
 
-  ionViewDidLoad() {
     this.weatherService.getCoords()
     .then(resp => {
+
+        //get current weather
         this.weatherService.getWeather(resp.coords.latitude, resp.coords.longitude)
         //.map(res => res.json())
         .subscribe(res => {
             this.weather = res.json();
             console.log(this.weather);
         })
+
+        //get forecast weather
+        this.weatherService.getForecastWeather(resp.coords.latitude, resp.coords.longitude)
+        //.map(res => res.json())
+        .subscribe(res => {
+            this.forecastWeather = res.json();
+            console.log(this.forecastWeather);
+        })
+
     });
+  }
+
+  ionViewDidLoad() {
+    
   }
 
 }
