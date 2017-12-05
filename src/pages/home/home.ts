@@ -24,16 +24,6 @@ export class HomePage {
     public weatherService: WeatherService,
     public platform: Platform) {
         
-    this.weatherService.getCoords()
-    .then(resp => {
-        this.weatherService.getWeather(resp.coords.latitude, resp.coords.longitude)
-        //.map(res => res.json())
-        .subscribe(res => {
-            this.weather = res.json();
-            console.log(this.weather.weather[0]);
-        })
-    });
-
     this.databaseService.getBy('cycles', {
       orderByChild: 'userId',
       equalTo: this.authService.userData.uid

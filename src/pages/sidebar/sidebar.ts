@@ -5,6 +5,7 @@ import { LoginPage } from '../login/login';
 import { ContactPage } from '../contact/contact';
 import { CyclesPage } from '../cycles/cycles';
 import { AuthService } from '../../services/auth.service';
+import { WeatherPage } from '../weather/weather';
 
 /**
  * Generated class for the SidebarPage page.
@@ -27,7 +28,7 @@ export class SidebarPage {
     this.pages = [
       {title: 'Inicio', component: HomePage, icon: 'stats'},
       {title: 'Mis Cultivos', component: CyclesPage, icon: 'leaf'},
-      {title: 'Tiempo', component: ContactPage, icon: 'cloud'},
+      {title: 'Tiempo', component: WeatherPage, icon: 'cloud'},
       {title: 'Herramientas', component: ContactPage, icon: 'construct'},
       {title: 'Contacto', component: ContactPage, icon: 'contact'}
     ];

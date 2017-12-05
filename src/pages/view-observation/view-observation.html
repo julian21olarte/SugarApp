@@ -24,7 +24,7 @@
       <p>Creada {{observation.createdAt | amTimeAgo}}</p>
       <br>
       <img *ngIf="observationImg" src="{{observationImg}}">
-      <ion-spinner padding item-center name="circles" *ngIf="observation.url && !observationImg"></ion-spinner>
+      <ion-spinner padding item-center name="circles" *ngIf="observation && observation.url && !observationImg"></ion-spinner>
     </ion-card-content>
   </ion-card>
 

@@ -28,18 +28,18 @@ export class ViewObservationPage {
     public alertCtrl: AlertController,
     public toastCtrl: ToastController) {
 
+  }
+
+
+  ngOnInit() {
     this.observation = this.navParams.get('observation');
-    this.databaseService.getObject('observations/' + this.observation.id)
-    .subscribe(observation => {
-      this.observation = observation;
-      if( this.observation.url ) {
-        this.databaseService.downloadImg(this.observation.url)
-        .then(img => {
-          this.observationImg = img;
-          console.log(img);
-        });
-      }
-    });
+    if( this.observation.url ) {
+      this.databaseService.downloadImg(this.observation.url)
+      .then(img => {
+        this.observationImg = img;
+        console.log(img);
+      });
+    }
   }
 
   ionViewDidLoad() {

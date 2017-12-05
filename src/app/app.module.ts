@@ -48,6 +48,7 @@ import { Http } from '@angular/http';
 import { HttpModule } from '@angular/http';
 import { Geolocation } from '@ionic-native/geolocation';
 import { ViewObservationPage } from '../pages/view-observation/view-observation';
+import { WeatherPage } from '../pages/weather/weather';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { ViewObservationPage } from '../pages/view-observation/view-observation'
     ObservationsPage,
     AddObservationPage,
     ViewObservationPage,
-    EditObservationPage
+    EditObservationPage,
+    WeatherPage
   ],
   imports: [
     BrowserModule,
@@ -105,7 +107,8 @@ import { ViewObservationPage } from '../pages/view-observation/view-observation'
     ObservationsPage,
     AddObservationPage,
     ViewObservationPage,
-    EditObservationPage
+    EditObservationPage,
+    WeatherPage
   ],
   providers: [
     StatusBar,

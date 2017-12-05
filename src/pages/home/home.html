@@ -31,18 +31,4 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
-  <ion-card *ngIf="weather">
-    <ion-card-header>
-      Clima
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item >
-        <ion-avatar item-left>
-          <img src="http://openweathermap.org/img/w/{{weather.weather[0].icon}}.png">
-        </ion-avatar>
-        <h2></h2>
-        <p>{{weather | json}}</p>
-      </ion-item>
-    </ion-card-content>
-  </ion-card>
 </ion-content>

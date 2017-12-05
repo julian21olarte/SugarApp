@@ -32,7 +32,10 @@ export class ViewActivityPage {
     public databaseService: DatabaseService,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController) {
-      
+  }
+
+
+  ngOnInit() {
     this.activity = this.navParams.get('activity');
     this.cycle_id = this.navParams.get('cycle_id');
 
