@@ -52,7 +52,7 @@ export class WeatherService {
 
 
 
-    //get forecast weather (5 days) info by latitude and longitude
+    //get forecast weather (each 3 hours per 5 days) info by latitude and longitude
     public getForecastWeather(lat:number, lon:number) {
         let url = this.OpenWeatherApi.baseUrl + 'forecast';
         url += '?appId=' + this.OpenWeatherApi.appId;
