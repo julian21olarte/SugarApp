@@ -31,9 +31,17 @@
         </ion-avatar>
         <h2>{{weather.name}} - {{weather.sys.country}}</h2>
         <p>Humedad: {{weather.main.humidity}}%</p>
-        <p>Temperatura: {{ (weather.main.temp - 273.15).toFixed(2) }}°C</p>
-        {{weather | json}}
+        <p>Temperatura: {{ (weather.main.temp) }}°C</p>
       </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Pronostico (5 dias)
+    </ion-card-header>
+    <ion-card-content>
+        <canvas #chartCanvas height="200px"></canvas>
     </ion-card-content>
   </ion-card>
 
@@ -45,10 +53,10 @@
       <ion-spinner padding name="circles" *ngIf="!forecastWeather"></ion-spinner>
       <ion-list *ngIf="forecastWeather">
         <ion-item *ngFor="let forecast of forecastWeather.list">
-          <ion-avatar item-left  class="avatar-weather-icon">
+          <ion-avatar item-left  class="avatar-forecast-icon">
             <img src="http://openweathermap.org/img/w/{{forecast.weather[0].icon}}.png">
           </ion-avatar>
-          <h2>Temperatura: {{ (forecast.main.temp - 273.15).toFixed(2) }}°C</h2>
+          <h2>Temperatura: {{ (forecast.main.temp) }}°C</h2>
           <p>{{ forecast.dt_txt | amLocale:'es' | amDateFormat:'MMM D YYYY - h:mm a'}}</p>
           <p>Humedad: {{forecast.main.humidity}}%</p>
         </ion-item>

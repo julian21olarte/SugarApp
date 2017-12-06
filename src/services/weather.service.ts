@@ -35,7 +35,8 @@ export class WeatherService {
     public getCoords() {
         return this.geolocation.getCurrentPosition({ 
             enableHighAccuracy: true, 
-            timeout: 5000
+            timeout: 20000,
+            maximumAge: 3600000
         });
     }
 
@@ -46,6 +47,7 @@ export class WeatherService {
         url += '?appId=' + this.OpenWeatherApi.appId;
         url += '&lat=' + lat.toString();
         url += '&lon=' + lon.toString();
+        url += '&units=metric';
 
         return this.http.get( url );
     }
@@ -58,6 +60,7 @@ export class WeatherService {
         url += '?appId=' + this.OpenWeatherApi.appId;
         url += '&lat=' + lat.toString();
         url += '&lon=' + lon.toString();
+        url += '&units=metric';
 
         return this.http.get( url );
     }
