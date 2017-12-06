@@ -75,7 +75,7 @@ export class ViewCyclePage implements OnInit{
   public deleteCycle(fab: FabContainer) {
     fab.close();
     let confirm = this.alertCtrl.create({
-      title: 'Eliminar este cyclo de produccion?',
+      title: 'Eliminar este ciclo de produccion?',
       message: 'Estas seguro? perderas toda la informacion de este ciclo.',
       buttons: [
         {
@@ -140,7 +140,7 @@ export class ViewCyclePage implements OnInit{
         data: {
           labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
           datasets: [{
-              label: '# of Votes',
+              label: 'Progreso',
               data: [12, 19, 3, 5, 2, 3],
               pointRadius: 1,
               backgroundColor: [
